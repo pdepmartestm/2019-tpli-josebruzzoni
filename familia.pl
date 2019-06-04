@@ -29,15 +29,21 @@ abuela(Abu,Nieto):-
     madre(Abu,Hijo),
     progenitor(Hijo,Nieto).
 
-hermano(H,I):-
-    progenitor(Prog,H),
-    progenitor(Prog,I),
-    H\=I.
+hermano(Hermano1,Hermano2):-
+    progenitor(Prog,Hermano1),
+    progenitor(Prog,Hermano2),
+    Hermano1\=Hermano2.
 
 tio(Tio,Sobrino):-
     hermano(Tio,Prog),
     progenitor(Prog,Sobrino).
 
-primo(P,Q):-
-    tio(Tio,P),
-    progenitor(Tio,Q).
+primo(Primo1,Primo2):-
+    tio(Tio,Primo1),
+    progenitor(Tio,Primo2).
+
+descendiente(Descendiente,Ancestro):-
+    progenitor(Ancestro,Descendiente).
+descendiente(Descendiente,Ancestro):-
+    progenitor(Ancestro,Otro),
+    descendiente(Descendiente,Otro).
